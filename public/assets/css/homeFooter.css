@@ -1,0 +1,21 @@
+.closing {
+  margin-top: 100px;
+  background-color: #2365CA;
+  color: #fff;
+  padding: 48px 0;
+}
+
+.closing h2 {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+.footer {
+  background-color: #1552AF;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.footer p {
+  margin: 8px 0;
+}

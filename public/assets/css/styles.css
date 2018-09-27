@@ -1,0 +1,85 @@
+* {
+  font-family: 'Rubik', sans-serif !important;
+}
+
+.navbar {
+  background-color: #2365CA !important;
+  padding: 20px 0;
+}
+
+p {
+  font-weight: lighter;
+}
+
+.nav-item {
+  margin: 0 6px;
+}
+
+.btn-general {
+  background-color: #0BB878;
+  color: #fff;
+}
+
+.btn-general:hover {
+  color: #fff;
+}
+
+.m-content {
+  margin-top: 80px;
+}
+
+.divider {
+  margin: 40px 0;
+}
+
+.head img {
+  margin-bottom: 30px;
+}
+
+.bio {
+  margin-bottom: 40px;
+}
+
+.bio img {
+  margin-bottom: 20px;
+}
+
+.bio ul li {
+  margin-bottom: 20px;
+}
+
+.tatacara .col-md-4 {
+  margin-bottom: 50px;
+}
+
+.closing {
+  margin-top: 100px;
+  background-color: #2365CA;
+  color: #fff;
+  padding: 48px 0;
+}
+
+.closing h2 {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+.closing .btn {
+  float: right;
+  margin-top: 40px;
+}
+
+.footer {
+  background-color: #1552AF;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.footer p {
+  margin: 8px 0;
+}
+
+
+body.login {
+  background-color: #2365CA;
+}

@@ -1,0 +1,36 @@
+.kandidat {
+  margin-bottom: 80px;
+}
+
+.kampanye{
+  margin:50px 0;
+}
+
+.kampanye .col-md-2 {
+  margin-top:20px;
+}
+
+.kampanye small.date {
+  margin-bottom: 4px;
+}
+
+.kampanye h6 {
+  line-height: 24px;
+}
+
+h3.headsection {
+  font-weight: normal;
+  margin: 20px 0;
+}
+
+.box {
+  /* border-bottom: 4px #2365CA solid; */
+}
+
+.boxx {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #2365CA;
+  margin-top: 20px;
+}
