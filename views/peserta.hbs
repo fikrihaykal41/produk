@@ -54,7 +54,6 @@
   <!--Main Content-->
    <div class="m-content container" style="margin-bottom: 10%;">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPesertaModal">Tambah Peserta</button>
-
       <!-- Modal -->
       <div class="modal fade" id="addPesertaModal" tabindex="-1" role="dialog" aria-labelledby="addPeserta" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -63,9 +62,9 @@
               <h5 class="modal-title" id="addPesertaLabel">Tambah Peserta</h5>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="">
+              <form role="form" method="post" action="/add">
                 <div class="form-group ml-auto">
-                  <label for="nama">No Urut</label>
+                  <label for="nourut">No Urut</label>
                   <input type="number" class="boks form-control" id="nourut" name="nourut" placeholder="contoh : 18xx">
                 </div>
                 <div class="form-group ml-auto">
@@ -94,9 +93,10 @@
             </tr>
         </thead>
         <tbody>
+          {{#each peserta}}
           <tr>
-            <td></td>
-            <td></td>
+            <td>{{nourut}}</td>
+            <td>{{nama}}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -108,6 +108,7 @@
               </div>
             </td>
           </tr>
+          {{/each}}
            <!-- Modal -->
           <div class="modal fade" id="editPesertaModal" tabindex="-1" role="dialog" aria-labelledby="editPeserta" aria-hidden="true">
             <div class="modal-dialog" role="document">

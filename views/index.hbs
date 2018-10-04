@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cihuy</title>
+</head>
+<body>
+    <h1>HEllow CHuy</h1>
+
+    <ul>
+        {{#each peserta}}
+        <li>Nourut: {{nourut}} | Nama: {{nama}}</li>
+        {{/each}}
+    </ul>
+
+    <form action="/add" method="POST">
+    <table>
+        <tr>
+            <td>Nourut: <input type="text" name="nourut"></td>
+         </tr>
+         <tr>   
+            <td>Nama: <input type="text" name="nama"></td>
+        </tr>
+        <tr>
+            <td><input type="submit"></td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>
