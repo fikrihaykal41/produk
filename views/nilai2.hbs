@@ -28,22 +28,22 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Kelola Peserta</a>
+            <a class="nav-link" href="/admin">Kelola Peserta</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Nilai Juri 1</a>
+            <a class="nav-link" href="/nilai1">Nilai Juri 1</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Nilai Juri 2</a>
+            <a class="nav-link" href="/nilai2">Nilai Juri 2</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Nilai Juri 3</a>
+            <a class="nav-link" href="/nilai3">Nilai Juri 3</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Kelola Admin</a>
+            <a class="nav-link" href="/kelolaAdmin">Kelola Admin</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="/loginAdmin">Logout</a>
           </li>
         </ul>
       </div>
@@ -60,24 +60,24 @@
                 <th>No Urut</th>
                 <th>Nama Sekolah</th>
                 <th>Kecakapan</th>
-                <th>Intonasi Suara</th>
                 <th>Pengurangan</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+          {{#each peserta}}
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{nourut}}</td>
+            <td>{{nama}}</td>
+            <td>{{kecakapan}}</td>
+            <td>{{minkec}}</td>
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPesertaModal">Update Score</button>
               </div>
             </td>
           </tr>
+          {{/each}}
            <!-- Modal -->
           <div class="modal fade" id="editPesertaModal" tabindex="-1" role="dialog" aria-labelledby="editPeserta" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -100,10 +100,6 @@
                     <div class="form-group ml-auto">
                       <label for="kecakapan">Kecakapan</label>
                       <input type="number" class="boks form-control" id="kecakapan" name="kecakapan" value="">
-                    </div>
-                    <div class="form-group ml-auto">
-                      <label for="suara">Intonasi Suara</label>
-                      <input type="number" class="boks form-control" id="suara" name="suara" value="">
                     </div>
                     <div class="form-group ml-auto">
                       <label for="pengurangan1">Pengurangan</label>

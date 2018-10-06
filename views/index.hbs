@@ -10,17 +10,20 @@
 
     <ul>
         {{#each peserta}}
-        <li>Nourut: {{nourut}} | Nama: {{nama}}</li>
+        <li>Nourut: {{nourut}} | Nama: {{nama}} | CV: {{cv}}</li>
         {{/each}}
     </ul>
 
-    <form action="/add" method="POST">
+    <form action="/add" method="POST" enctype="multipart/form-data">
     <table>
         <tr>
             <td>Nourut: <input type="text" name="nourut"></td>
          </tr>
          <tr>   
             <td>Nama: <input type="text" name="nama"></td>
+        </tr>
+        <tr>
+            <td>CV: <input type="file" name="cv"> </td>
         </tr>
         <tr>
             <td><input type="submit"></td>

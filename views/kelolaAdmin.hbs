@@ -27,22 +27,22 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Kelola Peserta</a>
+            <a class="nav-link" href="/admin">Kelola Peserta</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Nilai Juri 1</a>
+            <a class="nav-link" href="/nilai1">Nilai Juri 1</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Nilai Juri 2</a>
+            <a class="nav-link" href="/nilai2">Nilai Juri 2</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Nilai Juri 3</a>
+            <a class="nav-link" href="/nilai3">Nilai Juri 3</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Kelola Admin</a>
+            <a class="nav-link" href="/kelolaAdmin">Kelola Admin</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="/loginAdmin">Logout</a>
           </li>
         </ul>
       </div>
@@ -63,7 +63,7 @@
               <h5 class="modal-title" id="addCalonPanitiaLabel">Tambah Admin</h5>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="#">
+              <form role="form" method="POST" action="/addAdmin">
                 <div class="form-group ml-auto">
                   <label for="nama">Username</label>
                   <input type="text" class="boks form-control" id="username" name="username" placeholder="contoh : Admin">
@@ -84,15 +84,14 @@
       <table id="dataTable" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>No</th>
                 <th>Username</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+        {{#each admin}}
           <tr>
-            <td>1</td>
-            <td>admin</td>
+            <td>{{username}}</td>
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editAdminModal">Edit</button>
@@ -100,6 +99,7 @@
               </div>
             </td>
           </tr>
+        {{/each}}
            <!-- Modal Edit Admin-->
           <div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="editAdmin" aria-hidden="true">
             <div class="modal-dialog" role="document">
