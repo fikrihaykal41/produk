@@ -95,7 +95,7 @@
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editAdminModal">Edit</button>
-                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                <a href="#" class="btn btn-sm btn-danger deleteAdmin" data-id="{{id}}">Delete</a>
               </div>
             </td>
           </tr>
@@ -111,16 +111,16 @@
                   <form role="form" method="post" action="">
                     <div class="form-group ml-auto">
                       <label for="username">Username</label>
-                      <input type="text" class="boks form-control" id="username" name="username" value="">
+                      <input type="text" class="boks form-control" id="username" name="username" value="" required>
                       <input type="hidden" name="id_admin" id="id_admin" value="">
                     </div>
                     <div class="form-group ml-auto">
                       <label for="new_password">New Password</label>
-                      <input type="password" class="boks form-control" id="new_password" name="new_password">
+                      <input type="password" class="boks form-control" id="new_password" name="new_password" required>
                     </div>
                     <div class="form-group ml-auto">
                       <label for="cr_password">Current Password</label>
-                      <input type="password" class="boks form-control" id="cr_password" name="cr_password" required="required">
+                      <input type="password" class="boks form-control" id="cr_password" name="cr_password" required>
                     </div>
                     <button type="submit" class="btn btn-general btn-block" id="submit">Edit Data Admin</button>
                   </form>
@@ -158,7 +158,27 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('#dataTable').dataTable({});
-});
+  });
+
+    $(document).ready(function() {
+      $('.deleteAdmin').on('click', deleteAdmin);
+  });
+
+  function deleteAdmin() {
+    var confirmation = confirm('Are U Sure?');
+
+    if (confirmation) {
+        $.ajax({
+            type: 'DELETE',
+            url: '/deleteAdmin/' + $(this).data('id')
+        }).done(function(response) {
+            window.location.replace('/kelolaAdmin');
+        });
+        window.location.replace('/kelolaAdmin');
+    } else {
+        return false;
+    }
+  }
 </script>
 
 

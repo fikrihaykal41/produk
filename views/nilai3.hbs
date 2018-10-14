@@ -1,4 +1,3 @@
-<!-- 1301162112 -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,12 +53,12 @@
 
   <!--Main Content-->
    <div class="m-content container" style="margin-bottom: 10%;">
-      <table id="dataTable" class="display" cellspacing="0" width="100%">
+      <table id="dataTable" class="display text-center" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>No Urut</th>
                 <th>Nama Sekolah</th>
-                <th>Semangat</th>
+                <th>Durasi</th>
                 <th>Pengurangan</th>
                 <th>Actions</th>
             </tr>
@@ -69,52 +68,49 @@
           <tr>
             <td>{{nourut}}</td>
             <td>{{nama}}</td>
-            <td>{{semangat}}</td>
-            <td>{{minsem}}</td>
+            <td>{{durasi}}</td>
+            <td>{{mindur}}</td>
             <td>
               <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPesertaModal">Update Score</button>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editPesertaModal{{nourut}}">Update Score</button>
               </div>
             </td>
           </tr>
-        {{/each}}
-           <!-- Modal -->
-          <div class="modal fade" id="editPesertaModal" tabindex="-1" role="dialog" aria-labelledby="editPeserta" aria-hidden="true">
+          <!-- Modal -->
+          <div class="modal fade" id="editPesertaModal{{nourut}}" tabindex="-1" role="dialog" aria-labelledby="editPeserta" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="editPesertaLabel">Update Score</h5>
                 </div>
                 <div class="modal-body">
-                  <form role="form" method="post" action="#">
+                  <form role="form" method="POST" action="#">
                     <div class="form-group ml-auto">
                       <label for="nourut">No Urut</label>
-                      <input type="number" class="boks form-control" id="nourut" name="nourut" value="" disabled>
-                      <input type="hidden" name="nourut" value="">
+                      <input type="number" class="boks form-control" id="nourut" name="nourut" value="{{nourut}}" disabled>
                     </div>
                     <div class="form-group ml-auto">
                       <label for="nama">Nama Sekolah</label>
-                      <input type="text" class="boks form-control" id="nama" name="nama" value="" disabled>
-                      <input type="hidden" name="nama" value="">
+                      <input type="text" class="boks form-control" id="nama" name="nama" value="{{nama}}" disabled>
                     </div>
                     <div class="form-group ml-auto">
-                      <label for="semangat">Semangat</label>
-                      <input type="number" class="boks form-control" id="semangat" name="semangat" value="">
+                      <label for="duras">Durasi</label>
+                      <input type="number" class="boks form-control" id="durasi" name="durasi" value="" required>
                     </div>
                     <div class="form-group ml-auto">
-                      <label for="pengurangan1">Pengurangan</label>
-                      <input type="number" class="boks form-control" id="pengurangan3" name="pengurangan3" value="">
+                      <label for="mindur">Pengurangan</label>
+                      <input type="number" class="boks form-control" id="mindur" name="mindur" value="" required>
                     </div>
                     <input type="hidden" name="code" value="private">
-                    <button type="submit" class="btn btn-general btn-block" id="submit">Update Score</button>
+                    <button type="submit" class="btn btn-general btn-block" id="submit" data-id="{{id}}">Update Score</button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
+          {{/each}}
           <!-- End of Modal -->
         </tbody>
-
       </table>
     </div>
   <!--End of Main Content-->

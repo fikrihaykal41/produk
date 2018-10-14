@@ -65,11 +65,11 @@
               <form role="form" method="POST" action="/addPeserta">
                 <div class="form-group ml-auto">
                   <label for="nourut">No Urut</label>
-                  <input type="number" class="boks form-control" id="nourut" name="nourut" placeholder="contoh : 18xx">
+                  <input type="number" class="boks form-control" id="nourut" name="nourut" placeholder="contoh : 18xx" required>
                 </div>
                 <div class="form-group ml-auto">
                   <label for="nourut">Nama Sekolah</label>
-                  <input type="text" class="boks form-control" id="nama" name="nama" placeholder="contoh : SMA/SMK xxx" >
+                  <input type="text" class="boks form-control" id="nama" name="nama" placeholder="contoh : SMA/SMK xxx" required>
                 </div>
                 <button type="submit" class="btn btn-general btn-block" id="submit">Tambah Peserta</button>
               </form>
@@ -80,14 +80,14 @@
       <!-- End of Modal -->
 
       <br><br><br>
-      <table id="dataTable" class="display" cellspacing="0" width="100%">
+      <table id="dataTable" class="display text-center" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>No Urut</th>
                 <th>Nama Sekolah</th>
-                <th>PBB</th>
-                <th>Danton</th>
-                <th>Vafor</th>
+                <th>Ketepatan</th>
+                <th>Kompleksitas</th>
+                <th>Durasi</th>
                 <th>Total Nilai</th>
                 <th>Actions</th>
             </tr>
@@ -97,20 +97,19 @@
           <tr>
             <td>{{nourut}}</td>
             <td>{{nama}}</td>
-            <td>{{pbb}}</td>
-            <td>{{danton}}</td>
-            <td>{{vafor}}</td>
+            <td>{{ketepatan}}</td>
+            <td>{{kompleksitas}}</td>
+            <td>{{durasi}}</td>
             <td>{{total}}</td>
             <td>
               <div class="btn-group">
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editPesertaModal">Count</button>
-                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editPesertaModal{{nourut}}">Count</button>
+                <a href="#" class="btn btn-sm btn-danger deletePeserta" data-id="{{id}}">Delete</a>
               </div>
             </td>
           </tr>
-          {{/each}}
            <!-- Modal -->
-          <div class="modal fade" id="editPesertaModal" tabindex="-1" role="dialog" aria-labelledby="editPeserta" aria-hidden="true">
+          <div class="modal fade" id="editPesertaModal{{nourut}}" tabindex="-1" role="dialog" aria-labelledby="editPeserta" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -120,28 +119,28 @@
                   <form role="form" method="post" action="">
                     <div class="form-group ml-auto">
                       <label for="nourut">No Urut</label>
-                      <input type="number" class="boks form-control" id="nourut" name="nourut" value="" disabled>
-                      <input type="hidden" name="nourut" value="">
+                      <input type="number" class="boks form-control" id="nourut" name="nourut" value="{{nourut}}" disabled>
+                      <input type="hidden" name="nourut" value="{{nourut}}">
                     </div>
                     <div class="form-group ml-auto">
                       <label for="nama">Nama Sekolah</label>
-                      <input type="text" class="boks form-control" id="nama" name="nama" value="" disabled>
-                      <input type="hidden" name="nama" value="">
+                      <input type="text" class="boks form-control" id="nama" name="nama" value="{{nama}}" disabled>
+                      <input type="hidden" name="nama" value="{{nama}}">
                     </div>
                     <div class="form-group ml-auto">
                       <label for="total1">PBB</label>
-                      <input type="text" class="boks form-control" id="pbb" name="pbb" value="" disabled>
-                      <input type="hidden" name="pbb" value="">
+                      <input type="text" class="boks form-control" id="pbb" name="pbb" value="{{pbb}}" disabled>
+                      <input type="hidden" name="pbb" value="{{pbb}}">
                     </div>
                     <div class="form-group ml-auto">
                       <label for="total2">Danton</label>
-                      <input type="text" class="boks form-control" id="danton" name="danton" value="" disabled>
-                      <input type="hidden" name="danton" value="">
+                      <input type="text" class="boks form-control" id="danton" name="danton" value="{{danton}}" disabled>
+                      <input type="hidden" name="danton" value="{{danton}}">
                     </div>
                     <div class="form-group ml-auto">
                       <label for="total3">Vafor</label>
-                      <input type="text" class="boks form-control" id="vafor" name="vafor" value="" disabled>
-                      <input type="hidden" name="vafor" value="">
+                      <input type="text" class="boks form-control" id="vafor" name="vafor" value="{{vafor}}" disabled>
+                      <input type="hidden" name="vafor" value="{{vafor}}">
                     </div>
                     <input type="hidden" name="code" value="private">
                     <button type="submit" class="btn btn-general btn-block" id="submit">Hitung</button>
@@ -150,9 +149,9 @@
               </div>
             </div>
           </div>
+        {{/each}}
           <!-- End of Modal -->
         </tbody>
-
       </table>
     </div>
   <!--End of Main Content-->
@@ -180,7 +179,27 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('#dataTable').dataTable({});
-});
+  });
+
+  $(document).ready(function() {
+      $('.deletePeserta').on('click', deletePeserta);
+  });
+
+  function deletePeserta() {
+    var confirmation = confirm('Are U Sure?');
+
+    if (confirmation) {
+        $.ajax({
+            type: 'DELETE',
+            url: '/deletePeserta/' + $(this).data('id')
+        }).done(function(response) {
+            window.location.replace('/admin');
+        });
+        window.location.replace('/admin');
+    } else {
+        return false;
+    }
+  }
 </script>
 
 

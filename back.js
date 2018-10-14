@@ -15,23 +15,20 @@ mongoose.connect('mongodb://user:kulitkerang1@ds050077.mlab.com:50077/gelora', {
 })
 
 const pesertaSchema = mongoose.Schema({
-    nourut: String,
-    nama: String,
-    kerapihan: Number,
-    minker: Number,
-    kecakapan: Number,
-    minkec: Number,
-    semangat: Number,
-    minsem: Number,
-    pbb: Number,
-    danton: Number,
-    vafor: Number,
-    total: Number
+    nourut: { type: String, require: true, max: 100 },
+    nama: { type: String, require: true, max: 100 },
+    ketepatan: { type: Number, require: true, max: 5 },
+    minket: { type: Number, require: true, max: 5 },
+    kompleksitas: { type: Number, require: true, max: 5 },
+    minkom: { type: Number, require: true, max: 5 },
+    durasi: { type: Number, require: true, max: 5 },
+    mindur: { type: Number, require: true, max: 5 },
+    total: { type: Number, require: true, max: 5 }
 })
 
 const adminSchema = mongoose.Schema({
-    username: String,
-    password: String
+    username: { type: String, require: true, max: 10 },
+    password: { type: String, require: true, max: 10 }
 })
 
 const peserta = mongoose.model('peserta', pesertaSchema)
@@ -67,20 +64,6 @@ app.get('/', (req, res) => {
             res.send(error)
         })
 })
-
-// app.get('/login', (req, res) => {
-//     admin
-//         .find()
-//         .then((allPeserta) => {
-//             res.render('loginAdmin', {
-//                 peserta: allPeserta
-//             })
-
-//         })
-//         .catch(error => {
-//             res.send(error)
-//         })
-// })
 app.get('/admin', (req, res) => {
     peserta
         .find()
@@ -114,7 +97,6 @@ app.get('/nilai1', (req, res) => {
             res.render('nilai1', {
                 peserta: allPeserta
             })
-
         })
         .catch(error => {
             res.send(error)
@@ -150,14 +132,27 @@ app.get('/nilai3', (req, res) => {
 //end of Pages
 
 //function
+//create
+app.post('/addAdmin', (req, res) => {
+    admin.create({
+            username: req.body.username,
+            password: req.body.password
+        })
+        .then((hasil) => {
+            res.redirect('/kelolaAdmin')
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+    res.redirect("/kelolaAdmin")
+})
 app.post('/addPeserta', (req, res) => {
-    console.log(req.body);
     peserta.create({
             nourut: req.body.nourut,
             nama: req.body.nama
         })
         .then((hasil) => {
-            console.log(hasil);
             res.redirect('/admin')
         })
         .catch((error) => {
@@ -166,21 +161,22 @@ app.post('/addPeserta', (req, res) => {
 
     res.redirect("/admin")
 })
-app.post('/addAdmin', (req, res) => {
-    console.log(req.body);
-    admin.create({
-            username: req.body.username,
-            password: req.body.password
-        })
-        .then((hasil) => {
-            console.log(hasil);
-            res.redirect('/kelolaAdmin')
-        })
-        .catch((error) => {
-            console.log(error);
-        })
 
-    res.redirect("/kelolaAdmin")
+//update
+
+
+//delete
+app.delete('/deletePeserta/:id', (req, res) => {
+    peserta.findByIdAndRemove(req.params.id, function(err) {
+        if (err) return next(err);
+        res.send('delete berhasil');
+    })
+})
+app.delete('/deleteAdmin/:id', (req, res) => {
+    admin.findByIdAndRemove(req.params.id, function(err) {
+        if (err) return next(err);
+        res.send('delete berhasil');
+    })
 })
 
 //end of function
