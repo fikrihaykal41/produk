@@ -185,6 +185,6 @@ app.get('*', (req, res) => {
     res.send('halaman ga ada chuy')
 })
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server Started on Port 3000...');
 })
